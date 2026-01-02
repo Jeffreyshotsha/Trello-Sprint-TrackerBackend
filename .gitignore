@@ -1,0 +1,29 @@
+# .gitignore for Node.js / Express / TypeScript backend
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build output
+dist/
+build/
+
+# Environment variables (VERY IMPORTANT!)
+.env
+.env.local
+.env.development
+.env.production
+
+# Logs
+logs/
+*.log
+
+# Editor directories
+.vscode/
+.idea/
+.DS_Store
+
+# Temporary files
+*.swp
+*.swo
