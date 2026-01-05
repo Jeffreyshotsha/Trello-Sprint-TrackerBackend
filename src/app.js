@@ -5,14 +5,17 @@ import reportRoutes from "./routes/report.routes.js";
 
 const app = express();
 
-// ✅ Enable CORS for your frontend (localhost:5173)
+const cors = require('cors');
+
+// Allow your deployed frontend (and localhost for dev)
 app.use(cors({
-  origin: "http://localhost:5173",  // Allow only your Vite frontend
+  origin: [
+    'https://sprint-trackerfrontend.vercel.app',  // ← your Vercel URL
+    'http://localhost:5173'                       // keep for local dev
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
-
-// Or simpler (allows all origins during development):
-// app.use(cors());
 
 app.use(express.json());
 
