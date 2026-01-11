@@ -1,21 +1,21 @@
-// api/index.js - Minimal Express serverless for Vercel
+// api/index.js - Working Vercel serverless Express
 const express = require('express');
 const cors = require('cors');
 
+// Your report routes (adjust path if needed)
+const reportRoutes = require('../routes/report.routes.js');
+
 const app = express();
 
-// CORS - allow everything for testing
+// CORS: Allow everything for now (tighten later)
 app.use(cors({ origin: '*' }));
 
 app.use(express.json());
 
-// Simple root test
-app.get('/', (req, res) => {
-  res.json({ status: 'API is running on Vercel!' });
-});
+// Root test
+app.get('/', (req, res) => res.json({ status: 'API is running on Vercel!' }));
 
-// Your report route (adjust path if needed)
-const reportRoutes = require('../routes/report.routes.js');
+// Your main API
 app.use('/api/report', reportRoutes);
 
 // Export for Vercel
