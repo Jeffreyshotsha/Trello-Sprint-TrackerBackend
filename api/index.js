@@ -1,22 +1,28 @@
-// api/index.js - Working Vercel serverless Express
+// api/index.js - Crash-proof Vercel serverless test
 const express = require('express');
 const cors = require('cors');
 
-// Your report routes (adjust path if needed)
-const reportRoutes = require('../routes/report.routes.js');
-
 const app = express();
 
-// CORS: Allow everything for now (tighten later)
+// CORS - Allow everything for testing (tighten later)
 app.use(cors({ origin: '*' }));
 
 app.use(express.json());
 
-// Root test
-app.get('/', (req, res) => res.json({ status: 'API is running on Vercel!' }));
+// Simple root test
+app.get('/', (req, res) => res.json({ status: 'Backend is alive on Vercel!' }));
 
-// Your main API
-app.use('/api/report', reportRoutes);
+// Temporary placeholder route (replace with your real report logic later)
+app.get('/api/report/:boardId', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Test API response - replace with real Trello logic',
+    boardId: req.params.boardId,
+    totals: { "TO DO": 0, "DOING": 0, "DONE": 0, "NOT DONE": 0 },
+    members: [],
+    burndown: []
+  });
+});
 
-// Export for Vercel
+// Export for Vercel serverless
 module.exports = app;
